@@ -1,0 +1,12 @@
+:root {
+    --shell-top-background-color: #FFFFFF;
+    --shell-top-color: black;
+    --shell-body-background-color: #F8F9FD;
+    --shell-bottom-background-color: white;
+    --shell-bottom-color: black;
+    --shellauth-loading-loader-border: 16px solid #f3f3f3;
+    --shellauth-loading-loader-border-top: 16px solid black;
+    --shellauth-load-card-border-top: 1px solid #F1F0F9;
+    --cadre-service-background-color: #F6F7FD;
+    --cadre-service-color: black;
+}

@@ -1,0 +1,19 @@
+@media (max-width: 800px) {
+
+    .ShellCenter {
+        flex: 1;
+    }
+
+    .ShellTop__left {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 0.5em;
+    }
+
+    .ShellCenter {
+        display: none;
+    }
+
+}

@@ -1,0 +1,143 @@
+html, body {
+    margin: 0;
+    padding: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+}
+
+.Shell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ShellTop {
+    flex: 0.5;
+    background-color: var(--shell-top-background-color);
+    color: var(--shell-top-color);
+    display: flex;
+    flex-direction: row;
+}
+
+.ShellCenter {
+    flex: 10;
+}
+
+.ShellTop__left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 1em;
+    font-size: 1.5em;
+}
+
+.ShellTop__right {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 1.5em;
+}
+
+.iconMode {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.ShellTop__navigation {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* margin-right: 2em; */
+}
+
+.ShellTop__navigation-element {
+    padding-top: 0.2em;
+    cursor: pointer;
+    font-size: 1.22em;
+}
+
+.ShellBody {
+    flex: 10;
+    background-color: var(--shell-body-background-color);
+    height: 100%;
+    overflow-y: auto;
+}
+
+.ShellBottom {
+    flex: 1;
+    background-color: var(--shell-bottom-background-color);
+    color: var(--shell-bottom-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* VIEW AUTH */
+
+.container__application_auth {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.ShellAuth__card {
+    padding-top: 8%;
+    cursor: pointer;
+    flex: 1;
+}
+
+.ShellAuth__loading {
+    padding: 15em;
+}
+
+.ShellAuth__loading-loader {
+    border: var(--shellauth-loading-loader-border); /* Light grey */
+    border-top: var(--shellauth-loading-loader-border-top); /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin-top: 1.5%;
+    margin-left: 46.5%;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ShellAuthLoad__card {
+    border-top: var(--shellauth-load-card-border-top);
+    padding-top: 5%;
+    flex: 1;
+}
+
+.ShellAuthLoad__title {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.ShellAuthLoad__action {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.ShellAuthLoad__input {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    cursor: pointer;
+}
+
+/* VIEW AUTH */
+
+.cadre__service {
+    background-color: var(--cadre-service-background-color);
+    color: var(--cadre-service-color);
+    padding-top: 0.5em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+}
