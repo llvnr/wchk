@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,44 +16,61 @@ use App\Models\User;
 |
 */
 
-// Route::post('/uuid', function() {
+Route::group([
+    'prefix' => 'wstachecker'
+], function ($router) {
 
-//     // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
-//     $data = $data ?? random_bytes(16);
-//     assert(strlen($data) == 16);
+    Route::post('/checkdomain', function() {
 
-//     // Set version to 0100
-//     $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
-//     // Set bits 6-7 to 10
-//     $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+        $url = request('url');
+        $clientIP = request()->ip();
+    
+        if(isSiteAvailible($url)){
 
-//     // Output the 36 character UUID.
-//     $uuid = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+            Log::info("[WSTACHECKER] - Le service a vérifier un site. Résultat : En ligne");
+    
+            return response()->json([
+                "status" => true,
+                "message" => "Le site est en ligne."
+            ]);
+    
+        }else{
 
-//     $checkUser = User::where('uuid', $uuid)->exists();
+            Log::info("[WSTACHECKER] - Le service a vérifier un site. Résultat : Hors ligne");
+    
+            return response()->json([
+                "status" => true,
+                "message" => "Le site n'est pas en ligne."
+            ]);
+    
+        }
+    
+    });
 
-//     if($checkUser){
-//         return response()->json([
-//             "status" => false,
-//             "message" => "Une erreur est survenue, veuillez recommencer..."
-//         ]);
-//     } else {
-//         return response()->json([
-//             "status" => true,
-//             "uuid" => $uuid
-//         ]);
-//     }
+});
 
-// });
+function isSiteAvailible($url){
 
-// Route::group([
-//     'middleware' => 'api',
-//     'prefix' => 'auth'
-// ], function ($router) {
-//     Route::post('/login', [AuthController::class, 'login']);
-//     Route::post('/register', [AuthController::class, 'register']);
-//     Route::post('/logout', [AuthController::class, 'logout']);
-//     Route::post('/refresh', [AuthController::class, 'refresh']);
-//     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
-//     Route::post('/check', [AuthController::class, 'check']);
-// });
+    // Check, if a valid url is provided
+    if(!filter_var($url, FILTER_VALIDATE_URL)){
+        return false;
+    }
+
+    // Initialize cURL
+    $curlInit = curl_init($url);
+    
+    // Set options
+    curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
+    curl_setopt($curlInit,CURLOPT_HEADER,true);
+    curl_setopt($curlInit,CURLOPT_NOBODY,true);
+    curl_setopt($curlInit,CURLOPT_RETURNTRANSFER,true);
+
+    // Get response
+    $response = curl_exec($curlInit);
+    
+    // Close a cURL session
+    curl_close($curlInit);
+
+    return $response?true:false;
+
+}

@@ -9,10 +9,10 @@ function loadNavigation() {
         ShellTopNavigationHTMl.classList.add("ShellTop__navigation")
     
         let arrMenu = [
-            {
-                name: "Accueil",
-                action: "accueil"
-            }
+            // {
+            //     name: "Accueil",
+            //     action: "accueil"
+            // }
         ]
 
         arrMenu.forEach(element => {

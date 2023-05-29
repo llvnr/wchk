@@ -9,4 +9,10 @@
     --shellauth-load-card-border-top: 1px solid #F1F0F9;
     --cadre-service-background-color: #F6F7FD;
     --cadre-service-color: black;
+    /* APP */
+    --wsta-label-name-color: black;
+    --wsta-input-border: black;
+    --wsta-input-background: white;
+    --wsta-input-color: black;
+    /* APP */
 }
